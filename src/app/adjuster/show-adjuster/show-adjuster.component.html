@@ -1,0 +1,48 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+(click)="AddAdjuster()" data-keyborad="false">
+  Add Adjuster
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" (click)="closeClick()" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <app-add-edit-adjuster [adjuster]="adjuster" *ngIf="activateAddEditAdjusterCom">
+        </app-add-edit-adjuster>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+          <th>Adjuster ID</th>
+          <th>Adjuster Name</th>
+          <th>Claim Id</th>
+          <th>Claim Group Id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dataItem of adjusterList">
+        <td>{{dataItem.adjuterId}}</td>
+        <td>{{dataItem.adjusterName}}</td>
+        <td>{{dataItem.claimId}}</td>
+        <td>{{dataItem.claimGroupId}}</td>
+        <td>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          (click)="EditAdjuster(dataItem)">Edit</button>
+            <button type="button" class="btn btn-primary" (click)="deleteClick(dataItem.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
